@@ -1,0 +1,2 @@
+ALTER TABLE users_and_roles ADD CONSTRAINT fk_users_users_and_roles FOREIGN KEY (user_id) REFERENCES users (id);
+ALTER TABLE users_and_roles ADD CONSTRAINT fk_user_roles_users_and_roles FOREIGN KEY (user_role_id) REFERENCES user_roles (id);
