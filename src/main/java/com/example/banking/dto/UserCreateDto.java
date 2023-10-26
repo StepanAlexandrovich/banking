@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
 public class UserCreateDto {
     //@Size(min = 8,max = 20,message = "Field must be не попадает в пределы 8 - 20 знаков")
     private String login;

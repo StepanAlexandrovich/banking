@@ -1,9 +1,11 @@
 package com.example.banking.controllers;
 
+import com.example.banking.dto.UserCreateDto;
 import com.example.banking.models.User;
 import com.example.banking.models.UserAndRole;
 import com.example.banking.models.UserRole;
 import com.example.banking.repositories.UserRoleRepository;
+import com.example.banking.services.impl.AccountServiceImpl;
 import com.example.banking.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,16 +19,18 @@ public class TestController {
     private final UserServiceImpl userService;
     private final UserRoleRepository userRoleRepository;
 
+    private final AccountServiceImpl accountService;
+
     @GetMapping("/test")
     public String test(){
-//        UserCreateDto userCreateDto = new UserCreateDto("admin","1");
+//        UserCreateDto userCreateDto = new UserCreateDto("user5","5");
 //        userService.createUser(userCreateDto);
 
         System.out.println("---------------------");
 
 
 //        for (User user : userService.getAll()) {
-        for (User user : userService.getAllByUserRoleId(1L)) {
+        for (User user : userService.getAllByUserRoleId(2L)) {
             System.out.println(user.getLogin());
 
             for (UserAndRole userAndRole : user.getUserAndRoles()) {
@@ -35,11 +39,9 @@ public class TestController {
             }
         }
 
+        accountService.getAccountsByUserId(3L);
+
         return "test";
     }
 
-    @GetMapping("/test1")
-    public String test1(){
-        return "test1";
-    }
 }

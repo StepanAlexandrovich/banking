@@ -1,16 +1,17 @@
 package com.example.banking.models;
 
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
 
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "user_roles")
 @Getter
 @Setter
-public class UserRole {
+public class UserRole implements GrantedAuthority {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +19,11 @@ public class UserRole {
     @Column(name = "role")
     private String role;
 
-    @OneToMany(mappedBy = "userRole")
+    @OneToMany(mappedBy = "userRole",fetch = FetchType.EAGER)
     List<UserAndRole> userAndRoles;
+
+    @Override
+    public String getAuthority() {
+        return this.role;
+    }
 }
