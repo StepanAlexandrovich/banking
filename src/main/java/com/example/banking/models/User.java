@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -35,7 +34,9 @@ public class User implements UserDetails{
     @OneToMany(mappedBy = "user")
     private List<Account> accounts = new ArrayList<>();
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
-    List<UserAndRole> userAndRoles;
+    private List<UserAndRole> userAndRoles;
+    @OneToMany(mappedBy = "user")
+    private List<UserImage> images = new ArrayList<>();
 
     public User(String login, String password, String name) {
         this.login = login;

@@ -1,6 +1,7 @@
 package com.example.banking.controllers;
 
 import com.example.banking.dto.UserCreateDto;
+import com.example.banking.models.Account;
 import com.example.banking.models.User;
 import com.example.banking.models.UserAndRole;
 import com.example.banking.models.UserRole;
@@ -23,7 +24,22 @@ public class TestController {
 
     @GetMapping("/test")
     public String test(){
-//        UserCreateDto userCreateDto = new UserCreateDto("user5","5");
+
+
+        test2();
+
+        return "test";
+    }
+
+    void test2(){
+//        for (User user : userService.getAll()) {
+//            for (Account account : user.getAccounts()) {
+//                System.out.println(account.getId());
+//            }
+//        }
+    }
+    void test1(){
+        //        UserCreateDto userCreateDto = new UserCreateDto("user5","5");
 //        userService.createUser(userCreateDto);
 
         System.out.println("---------------------");
@@ -33,15 +49,11 @@ public class TestController {
         for (User user : userService.getAllByUserRoleId(2L)) {
             System.out.println(user.getLogin());
 
-            for (UserAndRole userAndRole : user.getUserAndRoles()) {
-                UserRole userRole = userRoleRepository.findById(userAndRole.getId().getUserRoleId()).orElse(null);
-                System.out.println(userRole.getRole());
-            }
+//            for (UserAndRole userAndRole : user.getUserAndRoles()) {
+//                UserRole userRole = userRoleRepository.findById(userAndRole.getId().getUserRoleId()).orElse(null);
+//                System.out.println(userRole.getRole());
+//            }
         }
-
-        accountService.getAccountsByUserId(3L);
-
-        return "test";
     }
 
 }

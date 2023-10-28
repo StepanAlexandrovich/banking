@@ -2,6 +2,7 @@ package com.example.banking.services.impl;
 
 import com.example.banking.models.Account;
 import com.example.banking.repositories.AccountRepository;
+import com.example.banking.repositories.UserRepository;
 import com.example.banking.services.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
+    private final UserRepository userRepository;
     @Override
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
@@ -20,6 +22,14 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account addAccount(Account account) {
         return accountRepository.save(account);
+    }
+
+    @Override
+    public Account createAccount(Long userId) {
+        Account account = new Account();
+        account.setUser(userRepository.findById(userId).orElse(null));
+        accountRepository.save(account);
+        return null;
     }
 
     @Override

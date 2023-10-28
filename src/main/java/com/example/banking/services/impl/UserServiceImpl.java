@@ -1,10 +1,8 @@
 package com.example.banking.services.impl;
 
 import com.example.banking.dto.UserCreateDto;
-import com.example.banking.models.User;
-import com.example.banking.models.UserAndRole;
-import com.example.banking.models.UserAndRoleKey;
-import com.example.banking.models.UserRole;
+import com.example.banking.models.*;
+import com.example.banking.repositories.AccountImageRepository;
 import com.example.banking.repositories.UserAndRoleRepository;
 import com.example.banking.repositories.UserRepository;
 import com.example.banking.repositories.UserRoleRepository;
@@ -12,7 +10,9 @@ import com.example.banking.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -23,6 +23,8 @@ public class UserServiceImpl implements UserService {
     private final UserAndRoleRepository userAndRoleRepository;
     //private final UserCreateDtoToUserTransformer<User> userCreateDtoToUserTransformer;
     private final PasswordEncoder passwordEncoder;
+
+    private final AccountImageRepository accountImageRepository;
 
     @Override
     public void createUser(UserCreateDto userCreateDto) {
@@ -46,6 +48,42 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User getById(Long id) {
+        return userRepository.findById(id).orElse(null);
+    }
+    @Override
+    public void addImageToUserByUserId(List<MultipartFile> files, Long userId) {
+        User user = userRepository.findById(userId).orElse(null);
+
+        List<UserImage> images = files.stream().map(this::convert).toList();
+        for (UserImage image : images) {
+            image.setUser(user);
+            accountImageRepository.save(image);
+        }
+
+//        User user = userRepository.findById(userId).orElse(null);
+//        List<AccountImage> images = files.stream().map(this::convert).toList();
+//        for (AccountImage image : images) {
+//            image.setUser(user);
+//        }
+//        user.setImages(images);
+//        userRepository.save(user);
+    }
+    private UserImage convert(MultipartFile file){
+        UserImage image = new UserImage();
+
+        try {
+            image.setSize(file.getSize());
+            image.setBytes(file.getBytes());
+            image.setOriginalFileName(file.getOriginalFilename());
+            image.setContentType(file.getContentType());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return image;
     }
     @Override
     public List<User> getAllByUserRoleId(Long userRoleId) {
