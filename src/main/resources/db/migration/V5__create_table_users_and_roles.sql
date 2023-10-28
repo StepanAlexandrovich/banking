@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS users_and_roles ( user_id bigint,user_role_id bigint, primary key(user_id,user_role_id));

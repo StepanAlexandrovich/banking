@@ -1,0 +1,1 @@
+alter table user_images ADD CONSTRAINT fk_users_account_images FOREIGN KEY (user_id) REFERENCES users (id);
