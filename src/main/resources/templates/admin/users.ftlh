@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <title>Login</title>
+    <title>users</title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <table>
     <thead>
     <tr>
         <th>Логин</th>
-        <th>Имя</th>
-        <th>Добавить счёт</th>
+        <th>Количество аккаунтов</th>
+        <th>Добавить аккаунт</th>
     </tr>
     </thead>
 
@@ -18,7 +18,7 @@
     <#list users as user>
     <tr>
         <th> ${user.login} </th>
-        <th> ${user.name} </th>
+        <th> ${user.getAccountsSize()} </th>
         <th>
             <form action="/admin/add_account" method="post" >
                 <br>
@@ -30,6 +30,9 @@
     </#list>
     </tbody>
 </table>
+
+<br>
+<a href="/logout">выйти из профиля</a>
 
 </body>
 </html>

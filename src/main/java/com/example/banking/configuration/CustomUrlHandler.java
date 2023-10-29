@@ -22,5 +22,8 @@ public class CustomUrlHandler implements AuthenticationSuccessHandler {
         if(roles.contains("ROLE_ADMIN")){
             response.sendRedirect("/admin/menu");
         }
+        if(roles.contains("ROLE_DISTRIBUTOR")){
+            response.sendRedirect("/distributor/menu");
+        }
     }
 }

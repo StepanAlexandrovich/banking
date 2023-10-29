@@ -1,1 +1,7 @@
-test
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Test</title>
+</head>
+<body> Test </body>
+</html>

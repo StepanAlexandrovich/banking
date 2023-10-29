@@ -14,8 +14,14 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final UserRepository userRepository;
+
     @Override
-    public List<Account> getAllAccounts() {
+    public Account getById(Long id) {
+        return accountRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Account> getAll() {
         return accountRepository.findAll();
     }
 
@@ -27,6 +33,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account createAccount(Long userId) {
         Account account = new Account();
+        account.setAmount(0.0);
         account.setUser(userRepository.findById(userId).orElse(null));
         accountRepository.save(account);
         return null;

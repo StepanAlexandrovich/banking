@@ -43,6 +43,7 @@ public class User implements UserDetails{
         this.password = password;
         this.name = name;
     }
+    public int getAccountsSize(){ return accounts.size(); }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -71,9 +72,7 @@ public class User implements UserDetails{
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
+    public boolean isCredentialsNonExpired() { return true; }
 
     @Override
     public boolean isEnabled() {

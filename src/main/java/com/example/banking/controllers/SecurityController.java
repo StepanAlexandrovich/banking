@@ -17,24 +17,20 @@ import java.security.Principal;
 @Controller
 @RequestMapping
 @RequiredArgsConstructor
-public class StartController {
+public class SecurityController {
     private final UserValidation userValidation;
     private final UserServiceImpl userService;
-
     @GetMapping("/login")
-    public String login(Principal principal){
-
-        System.out.println(principal);
+    public String login(){
         return "login";
     }
-
     @GetMapping("/registration")
     public String registration(Model model){
         model.addAttribute("userCreateDto",new UserCreateDto());
         return "registration";
     }
     @PostMapping("/registration")
-    public String registrationClient(@Valid UserCreateDto userCreateDto, BindingResult bindingResult, Model model){
+    public String registration(@Valid UserCreateDto userCreateDto, BindingResult bindingResult, Model model){
         userValidation.validate(userCreateDto,bindingResult);
         if(!bindingResult.hasErrors()){
             model.addAttribute("noErrors",true);
@@ -44,12 +40,5 @@ public class StartController {
         model.addAttribute("userCreateDto",userCreateDto);
         return "registration";
     }
-
-    @GetMapping("/start")
-    public String start(Principal principal){
-
-        return "start";
-    }
-
 
 }

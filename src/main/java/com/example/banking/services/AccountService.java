@@ -5,7 +5,8 @@ import com.example.banking.models.Account;
 import java.util.List;
 
 public interface AccountService {
-    List<Account> getAllAccounts();
+    Account getById(Long id);
+    List<Account> getAll();
     Account addAccount(Account account);
     Account createAccount(Long userId);
 
