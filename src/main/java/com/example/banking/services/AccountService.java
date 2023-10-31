@@ -11,4 +11,7 @@ public interface AccountService {
     Account createAccount(Long userId);
 
     List<Account> getAccountsByUserId(Long userId);
+
+    Account addMoney(Double money, Long accountId);
+    List<Account> transfer(Double money,Long AccountIdFrom,Long accountIdTo);
 }

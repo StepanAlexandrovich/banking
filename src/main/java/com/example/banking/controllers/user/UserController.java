@@ -2,6 +2,7 @@ package com.example.banking.controllers.user;
 
 import com.example.banking.models.User;
 import com.example.banking.services.impl.AccountServiceImpl;
+import com.example.banking.services.impl.UserImageServiceImpl;
 import com.example.banking.services.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +23,7 @@ import java.util.List;
 public class UserController {
     private final UserServiceImpl userService;
     private final AccountServiceImpl accountService;
+    private final UserImageServiceImpl imageService;
     @GetMapping("/menu")
     public String userMenu(Principal principal, Model model){
         User user = ((User) ((UsernamePasswordAuthenticationToken) principal).getPrincipal());
@@ -51,7 +53,8 @@ public class UserController {
     ){  // переделать
         List<MultipartFile> files = new ArrayList<>();
         files.add(file);
-        userService.addImageToUserByUserId(files,userId);
-        return userImages(userId,model);
+        imageService.addImageToUserByUserId(files,userId);
+        //return userImages(userId,model);
+        return "forward:/user/images";
     }
 }

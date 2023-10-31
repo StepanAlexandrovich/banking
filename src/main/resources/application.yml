@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${url}
-    username: ${username}
-    password: ${password}
+    url: jdbc:postgresql://localhost:5432/banking
+    username: postgres
+    password: 1
   jpa:
     show-sql: true
     hibernate:

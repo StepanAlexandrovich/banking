@@ -3,6 +3,7 @@ package com.example.banking.controllers;
 import com.example.banking.dto.UserCreateDto;
 import com.example.banking.services.impl.UserServiceImpl;
 import com.example.banking.validation.UserValidation;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
@@ -21,7 +21,7 @@ public class SecurityController {
     private final UserValidation userValidation;
     private final UserServiceImpl userService;
     @GetMapping("/login")
-    public String login(){
+    public String login(Principal principal){
         return "login";
     }
     @GetMapping("/registration")

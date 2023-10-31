@@ -13,6 +13,5 @@ public interface UserService {
     List<User> getAll();
     User getById(Long id);
 
-    void addImageToUserByUserId(List<MultipartFile> files,Long userId);
     List<User> getAllByUserRoleId(Long userRoleId);
 }

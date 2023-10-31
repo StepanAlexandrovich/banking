@@ -15,5 +15,15 @@
 <br>
 <a href="/logout">выйти из профиля</a>
 
+<br>
+<form action="/banking/add_money" method="post" >
+    <input type="number" min="0" step="0.01" name="money">
+    <br>
+    <input type="hidden" name = accountId value="${account.id}">
+    <br>
+    <input type="submit" value="добавит на счёт">
+    <br>
+</form>
+
 </body>
 </html>
