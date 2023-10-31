@@ -1,0 +1,20 @@
+table {
+    font-family: sans-serif;
+    text-align: left;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background: #ece9e0;
+    color: #656655;
+    border: 16px solid #ece9e0;
+    border-radius: 20px;
+}
+
+thead{
+    font-size: 18px;
+    padding: 10px;
+}
+
+tbody{
+    background: #f5d7bf;
+    padding: 10px;
+}
