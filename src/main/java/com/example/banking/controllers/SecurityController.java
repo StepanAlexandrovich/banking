@@ -20,6 +20,7 @@ import java.security.Principal;
 public class SecurityController {
     private final UserValidation userValidation;
     private final UserServiceImpl userService;
+
     @GetMapping("/login")
     public String login(Principal principal){
         return "login";

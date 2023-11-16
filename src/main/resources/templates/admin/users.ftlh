@@ -20,7 +20,7 @@
         <th> ${user.login} </th>
         <th> ${user.getAccountsSize()} </th>
         <th>
-            <form action="/admin/add_account" method="post" >
+            <form action="/admin/deactivate_account" method="post" >
                 <br>
                 <input type="hidden" name="userId" value=${user.id}>
                 <input type="submit" value="добавить аккаунт">

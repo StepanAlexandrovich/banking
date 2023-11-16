@@ -10,16 +10,12 @@
 
 <br>
 <form action="/user/accounts" method="post" >
-    <input type="hidden" name="userId" value=${user.id}>
-    <br>
     <input type="submit" value="список ваших аккаунтов">
     <br>
 </form>
 
 <br>
 <form action="/user/images" method="post" >
-    <input type="hidden" name="userId" value=${user.id}>
-    <br>
     <input type="submit" value="фотографии вашего профиля">
     <br>
 </form>

@@ -8,8 +8,10 @@
 <table>
     <thead>
     <tr>
-        <th>Список аккаутов по id</th>
+        <th>Имя аккаунта</th>
         <th>Пользователь данного аккаунта</th>
+        <th>Состояние аккаунта</th>
+        <th>Сумма</th>
         <th>Блокировка аккаунта</th>
     </tr>
     </thead>
@@ -17,13 +19,15 @@
     <tbody>
     <#list accounts as account>
     <tr>
-        <th> ${account.id} </th>
+        <th> ${account.name} </th>
         <th> ${account.user.login} </th>
+        <th> ${account.getState()} </th>
+        <th> ${account.amount} </th>
         <th>
-            <form action="/admin/ban_account" method="post" >
+            <form action="/admin/change_state_account" method="post" >
                 <br>
                 <input type="hidden" name="accountId" value=${account.id}>
-                <input type="submit" value="заблокироать аккаунт">
+                <input type="submit" value="${account.action()}">
             </form>
         </th>
     </tr>

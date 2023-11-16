@@ -1,5 +1,9 @@
 spring:
   datasource:
+#    hikari:
+##      transaction-isolation: TRANSACTION_READ_UNCOMMITTED
+##      transaction-isolation: TRANSACTION_REPEATABLE_READ
+#      transaction-isolation: TRANSACTION_SERIALIZABLE
     url: jdbc:postgresql://localhost:5432/banking
     username: postgres
     password: 1

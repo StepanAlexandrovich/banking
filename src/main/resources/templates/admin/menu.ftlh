@@ -10,7 +10,7 @@
 <br>
 <a href="/user/menu">войти как обычный пользователь</a>
 <br>
-<a href="/admin/accounts">посмотреть список аккаутов</a>
+<a href="/transfer/accounts">посмотреть список аккаутов</a>
 <br>
 <a href="/admin/users">посмотреть список пользователей</a>
 <br>

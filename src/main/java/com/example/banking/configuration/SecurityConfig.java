@@ -18,10 +18,6 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
     private final CustomUrlHandler customUrlHandler;
 
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
-//    }
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -31,7 +27,6 @@ public class SecurityConfig {
     public WebSecurityCustomizer webSecurityCustomizer() throws Exception {
         return web -> web.ignoring().requestMatchers("/static/**","/styles/**");
     }
-
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
@@ -46,23 +41,6 @@ public class SecurityConfig {
                 })
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer.loginPage("/login").permitAll().successHandler(customUrlHandler))
                 .build();
-
-
-//                .authorizeRequests()
-//                .antMatchers("/registration")
-//                .permitAll()
-//                .antMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
-//                .antMatchers("/distributor/**").hasAuthority("ROLE_DISTRIBUTOR")
-//                .antMatchers("/user/**").hasAuthority("ROLE_USER")
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                 .successHandler(customUrlHandler)
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .permitAll();
     }
 
 }
